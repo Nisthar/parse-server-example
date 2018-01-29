@@ -20,6 +20,10 @@
     "SERVER_URL": {
       "description": "URL to connect to your Heroku instance (update with your app's name + PARSE_MOUNT)",
       "value": "http://yourappname.herokuapp.com/parse"
+    },
+    "CLIENT_CLASS_CREATION":{
+      "description": "Allow client class creation",
+      "value": false
     }
   },
   "image": "heroku/nodejs",
