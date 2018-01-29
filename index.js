@@ -11,6 +11,10 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+if(typeof process.env.CLIENT_CLASS_CREATION == undefined){
+ console.log("process.env.CLIENT_CLASS_CREATION is not set");
+}
+
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
@@ -39,6 +43,10 @@ app.use(mountPath, api);
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
+});
+
+app.get('/check',function(req,res){
+res.send(process.env.CLIENT_CLASS_CREATION);
 });
 
 // There will be a test page available on the /test path of your server url
