@@ -1,12 +1,13 @@
+#vm: true
 runtime: nodejs
 env: flex
 
 env_variables:
   # --REQUIRED--
-  DATABASE_URI: mongodb://localhost:27017/dev
-  APP_ID: <your-app-id>
-  MASTER_KEY: <your-master-key>
-  SERVER_URL: https://your-project-id.appspot.com/parse
+  DATABASE_URI: mongodb://ieatmore:Eatmore123@ds121248.mlab.com:21248/ieatmore
+  APP_ID: iEatMore
+  MASTER_KEY: iEatMore123
+  SERVER_URL: https://ieatmore-193718.appspot.com/parse
   # --OPTIONAL--
   # FILE_KEY: <your-file-key>
   # PARSE_MOUNT: /parse

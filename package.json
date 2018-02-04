@@ -9,10 +9,12 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@parse/gcs-files-adapter": "^1.1.2",
     "express": "~4.11.x",
     "kerberos": "~0.0.x",
     "parse": "~1.8.0",
-    "parse-server": "^2.7.2"
+    "parse-server": "^2.7.2",
+    "parse-server-gcs-adapter": "^1.1.2"
   },
   "scripts": {
     "start": "node index.js"

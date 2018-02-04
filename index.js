@@ -4,13 +4,14 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+var GCSAdapter = require('parse-server-gcs-adapter');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
-
+process.env['PARSE_SERVER_ALLOW_CLIENT_CLASS_CREATION'] = false;
 if(typeof process.env.CLIENT_CLASS_CREATION == undefined){
  console.log("process.env.CLIENT_CLASS_CREATION is not set");
 }
@@ -23,8 +24,14 @@ var api = new ParseServer({
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   enableAnonymousUsers: process.env.ANON_USERS || false,
   allowClientClassCreation: process.env.CLIENT_CLASS_CREATION || false,
+  filesAdapter: new GCSAdapter(
+    "ieatmore-193718",
+    __dirname+"/IEatMore-b877a882ca12.json",
+    "ieatmore-193718.appspot.com",
+    {directAccess: true}
+  ),
   liveQuery: {
-    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+    classNames: ["Foods"] // List of classes to support for query subscriptions
   }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
@@ -46,7 +53,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/check',function(req,res){
-res.send(process.env.CLIENT_CLASS_CREATION);
+res.send("new app. "+process.env.PARSE_SERVER_ALLOW_CLIENT_CLASS_CREATION+"");
 });
 
 // There will be a test page available on the /test path of your server url
